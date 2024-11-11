@@ -25,7 +25,7 @@ Widget::Widget(QWidget *parent)
     gTimer->setInterval(100);
     connect(gTimer, &QTimer::timeout, shp, &ship::slotShip);
     connect(shp, &ship::updateScene, this, &Widget::updateScene);
-    gTimer->start();
+    gTimer->start(100);
 }
 
 Widget::~Widget()
@@ -36,6 +36,8 @@ void Widget::updateScene()
 {
     QPointF tmpPoint = shp->scenePos();
     shp->addTick();
+    shp->setVelocity(10);
+    //shp->setCource(90);
     scene->addLine(QLineF(stPnt, tmpPoint), QPen(Qt::black));
     stPnt=tmpPoint;
     scene->update();

@@ -1,5 +1,6 @@
 #include "ship.h"
 #include <QDebug>
+#include <QtMath>
 
 ship::ship(QObject *parent):QObject(parent), QGraphicsItem()
 {
@@ -35,22 +36,39 @@ void ship::addTick()
     ticks++;
 }
 
+void ship::setPosition(QPointF pnt)
+{
+    pose = pnt;
+}
+
+void ship::setCource(qreal angle)
+{
+    cource = angle;
+}
+
+void ship::setVelocity(qint8 vel)
+{
+    velocity = vel;
+}
+
 void ship::slotShip()
 {
-    QPointF gCrd = this->pos();
-    qDebug() << " tick ="<< ticks<< "\t coord: x=" << gCrd.x()
-             << "\t y=" << gCrd.y() <<"\n";
+    pose =  this->pos();
+    qDebug() << " tick ="<< ticks<< "\t coord: x=" << pose.x()
+             << "\t y=" << pose.y() <<"\n";
 
-    /*int k = 10;
+    /*pose.setX((velocity/10)*cos(cource));
+    pose.setY((velocity/10)*sin(cource));
+    setRotation(359);
+    setPos(mapToParent(pose));*/
    if( cource >= 0 && cource < 360){
-        cource += k;
+        cource += 10;
         setRotation(cource);
-        setPos(mapToParent(0,-5));
+        //setPos(mapToParent(0,5));
     }
    else
    {
-       k--;
        cource = 0;
-   }*/
+   }
 
 }
