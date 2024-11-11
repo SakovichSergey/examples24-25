@@ -59,16 +59,17 @@ void ship::slotShip()
 
     /*pose.setX((velocity/10)*cos(cource));
     pose.setY((velocity/10)*sin(cource));
-    setRotation(359);
     setPos(mapToParent(pose));*/
-   if( cource >= 0 && cource < 360){
-        cource += 10;
-        setRotation(cource);
-        //setPos(mapToParent(0,5));
+
+    setPos(mapToParent((velocity/10)*cos(cource),(velocity/10)*sin(cource)));
+   /*if( cource >= 0 && cource < 360){
+        //cource += 10;
+       // setRotation(cource);
+        //setPos(mapToParent((velocity/10)*cos(cource),(velocity/10)*sin(cource)));
     }
    else
    {
        cource = 0;
-   }
+   }*/
 
 }
