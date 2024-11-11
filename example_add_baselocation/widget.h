@@ -17,12 +17,14 @@ class Widget : public QWidget
     QGraphicsScene *scene;
     QTimer *gTimer;
     ship* shp;
+    ship* warshp;
     QPointF stPnt;
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
  public slots:
     void updateScene();
+    void updateScene2();
 
 };
 #endif // WIDGET_H

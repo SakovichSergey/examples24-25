@@ -18,6 +18,7 @@ Widget::Widget(QWidget *parent)
     scene->setSceneRect(-360,-360,700,700);
     this->setLayout(layout);
     shp = new ship();
+    warshp = new ship();
     scene->addItem(shp);
     shp->setPos(-360,0);
     stPnt = shp->pos();
@@ -25,6 +26,7 @@ Widget::Widget(QWidget *parent)
     gTimer->setInterval(100);
     connect(gTimer, &QTimer::timeout, shp, &ship::slotShip);
     connect(shp, &ship::updateScene, this, &Widget::updateScene);
+    connect(warshp, &ship::updateScene, this, &Widget::updateScene2);
     gTimer->start(100);
 }
 
@@ -37,6 +39,18 @@ void Widget::updateScene()
     QPointF tmpPoint = shp->scenePos();
     shp->addTick();
     shp->setVelocity(10);
+    //shp->setCource(90);
+    scene->addLine(QLineF(stPnt, tmpPoint), QPen(Qt::black));
+    stPnt=tmpPoint;
+    scene->update();
+}
+
+void Widget::updateScene2()
+{
+    QPointF tmpPoint = shp->scenePos();
+    shp->addTick();
+    shp->setVelocity(10);
+    shp->setPosition(QPointF(0,0));
     //shp->setCource(90);
     scene->addLine(QLineF(stPnt, tmpPoint), QPen(Qt::black));
     stPnt=tmpPoint;
