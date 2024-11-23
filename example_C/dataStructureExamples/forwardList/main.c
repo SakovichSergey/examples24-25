@@ -8,13 +8,13 @@ typedef struct Elem
 {
     int data;
     struct Elem* nextPtr;
-}List; //
+}List; //Псевдоним для елемента структуры
 int* createRndMas(int* mas, size_t length);
 void rawListProcess(int* mas, size_t length);
 void functionsListProcess(int* mas, size_t length);
 int main()
 {
-    printf("Random massiv!\n");
+    printf("Массив случайных чисел!\n");
     int *mas = NULL;
     mas = createRndMas(mas,10);
     for(size_t i=10;i>0;i--)
@@ -38,7 +38,7 @@ int* createRndMas(int* mas, size_t length)
 }
 void rawListProcess(int* mas, size_t length)
 {
-    List *head = (List*)malloc(sizeof(List)); //Head of forward list;
+    List *head = (List*)malloc(sizeof(List)); //Голова односвязного списка;
     head->data = mas[0];
     head->nextPtr = NULL;
     for(size_t i=1;i<length;i++)
