@@ -4,23 +4,26 @@
 #include <time.h>
 
 
-struct Elem
+typedef struct Elem
 {
     int data;
     struct Elem* nextPtr;
-}List;
+}List; //
 int* createRndMas(int* mas, size_t length);
-
+void rawListProcess(int* mas, size_t length);
+void functionsListProcess(int* mas, size_t length);
 int main()
 {
     printf("Random massiv!\n");
     int *mas = NULL;
     mas = createRndMas(mas,10);
-    for(size_t i=0;i<10;i++)
+    for(size_t i=10;i>0;i--)
     {
-        printf("%d\t",mas[i]);
+        printf("%d\t",mas[i-1]);
     }
     printf("\n");
+    rawListProcess(mas,10);
+    functionsListProcess(mas,10);
     return 0;
 }
 int* createRndMas(int* mas, size_t length)
@@ -32,4 +35,30 @@ int* createRndMas(int* mas, size_t length)
         mas[i]=rand()%99+1;//1..99
     }
     return mas;
+}
+void rawListProcess(int* mas, size_t length)
+{
+    List *head = (List*)malloc(sizeof(List)); //Head of forward list;
+    head->data = mas[0];
+    head->nextPtr = NULL;
+    for(size_t i=1;i<length;i++)
+    {
+        List *newElem = (List*)malloc(sizeof(List));
+        newElem->data = mas[i];
+        newElem->nextPtr = head;
+        head = newElem;
+    }
+    do
+    {
+        printf("%d\t", head->data);
+        List *tmpElem = head;
+        head = head->nextPtr;
+        free(tmpElem);
+    }while(head);
+    printf("\n");
+    free(head);
+}
+void functionsListProcess(int* mas, size_t length)
+{
+
 }
