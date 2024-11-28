@@ -58,7 +58,58 @@ void rawListProcess(int* mas, size_t length)
     printf("\n");
     free(head);
 }
+void addValueInList(List **tmp, int number, size_t count);
+void printList(List **tmp);
+void deleteList(List **tmp);
 void functionsListProcess(int* mas, size_t length)
 {
+    List **head = (List**)malloc(sizeof(List*));
+    for(size_t i=0;i<length;i++)
+        {
+            addValueInList(head,mas[i],i);
+        }
+    printList(head);
+    deleteList(head);
 
+}
+void addValueInList(List **tmp, int number, size_t count)
+{
+    List *newElem = (List*)malloc(sizeof(List));
+    newElem->data = number;
+    if (count ==0)
+        {
+            newElem->nextPtr = NULL;
+        }
+    else
+        {
+            newElem->nextPtr = (*tmp);
+        }
+    (*tmp) = newElem;
+}
+void printList(List **tmp)
+{
+    if(tmp!=NULL)
+    {
+        do
+            {
+                printf("%d\t", (*tmp)->data);
+                if((*tmp)!=NULL)
+                {
+                (*tmp) = (*tmp)->nextPtr;
+                }
+        }while((*tmp)!=NULL);
+        printf("\n");
+    }
+}
+void deleteList(List **tmp)
+{
+    if((*tmp)!=NULL)
+    {
+        do
+        {
+            List *tmpElem = (*tmp);
+            (*tmp) = (*tmp)->nextPtr;
+            free(tmpElem);
+        }while((*tmp));
+    }
 }
