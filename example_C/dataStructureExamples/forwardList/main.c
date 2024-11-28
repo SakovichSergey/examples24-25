@@ -92,8 +92,7 @@ void printList(List **tmp)
     {
         do
             {
-                List* val = (*tmp);
-                printf("%d\t", val->data);
+            printf("%d\t", (*(*tmp)).data);
                 if((*tmp)!=NULL)
                 {
                 (*tmp) = (*tmp)->nextPtr;
