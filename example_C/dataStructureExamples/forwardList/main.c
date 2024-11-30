@@ -70,7 +70,7 @@ void functionsListProcess(int* mas, size_t length)
         }
     printList(head);
     deleteList(head);
-
+    free(head);
 }
 void addValueInList(List **tmp, int number, size_t count)
 {
@@ -92,7 +92,7 @@ void printList(List **tmp)
     {
         do
             {
-            printf("%d\t", (*(*tmp)).data);
+                printf("%d\t", (*(*tmp)).data);
                 if((*tmp)!=NULL)
                 {
                 (*tmp) = (*tmp)->nextPtr;
