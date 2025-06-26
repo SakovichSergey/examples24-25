@@ -5,7 +5,10 @@
 ship::ship(QObject *parent):QObject(parent), QGraphicsItem()
 {
     cource = 0;
+    setRotation(cource);
     ticks=0;
+    angle = 0;
+    setTransformOriginPoint(0,35);
 }
 
 ship::~ship()
@@ -46,7 +49,7 @@ void ship::setCource(qreal angle)
     cource = angle;
 }
 
-void ship::setVelocity(qint8 vel)
+void ship::setVelocity(qreal vel)
 {
     velocity = vel;
 }
@@ -55,21 +58,14 @@ void ship::slotShip()
 {
     pose =  this->pos();
     qDebug() << " tick ="<< ticks<< "\t coord: x=" << pose.x()
-             << "\t y=" << pose.y() <<"\n";
+             << "\t y=" << pose.y() << "\t cource =" << cource <<"\n";
 
-    /*pose.setX((velocity/10)*cos(cource));
-    pose.setY((velocity/10)*sin(cource));
-    setPos(mapToParent(pose));*/
+    auto vel = 0.0000001;
+    pose.setX(vel*cos(cource)-vel*sin(cource));
+    pose.setY(vel*sin(cource)+vel*cos(cource));
 
-    setPos(mapToParent((velocity/10)*cos(cource),(velocity/10)*sin(cource)));
-   /*if( cource >= 0 && cource < 360){
-        //cource += 10;
-       // setRotation(cource);
-        //setPos(mapToParent((velocity/10)*cos(cource),(velocity/10)*sin(cource)));
-    }
-   else
-   {
-       cource = 0;
-   }*/
 
+    angle += 1;
+    setRotation(angle);
+    setPos(mapToParent(pose));
 }

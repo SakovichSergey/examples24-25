@@ -11,7 +11,8 @@ class ship : public QObject, public QGraphicsItem
     qreal cource;
     qint64 ticks;
     QPointF pose;
-    qint8 velocity;
+    qreal velocity;
+    qreal angle;
 public:
     explicit ship(QObject *parent = nullptr);
     ~ship();
@@ -20,7 +21,7 @@ public:
     void addTick();
     void setPosition(QPointF pnt);
     void setCource(qreal angle);
-    void setVelocity(qint8 vel);
+    void setVelocity(qreal vel);
 public slots:
     void slotShip();
 

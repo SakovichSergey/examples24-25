@@ -38,8 +38,8 @@ void Widget::updateScene()
 {
     QPointF tmpPoint = shp->scenePos();
     shp->addTick();
-    shp->setVelocity(10);
-    //shp->setCource(90);
+    shp->setVelocity(5);
+    shp->setCource(0);
     scene->addLine(QLineF(stPnt, tmpPoint), QPen(Qt::black));
     stPnt=tmpPoint;
     scene->update();
@@ -51,7 +51,7 @@ void Widget::updateScene2()
     shp->addTick();
     shp->setVelocity(10);
     shp->setPosition(QPointF(0,0));
-    //shp->setCource(90);
+    //shp->setCource(3.14);
     scene->addLine(QLineF(stPnt, tmpPoint), QPen(Qt::black));
     stPnt=tmpPoint;
     scene->update();
